@@ -11,18 +11,21 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strings"
 )
 
 var (
 	str       string
 	seperator = ""
 	split     = " "
+	cassing   = false
 )
 
 func main() {
 	flag.StringVar(&str, "s", "", "String to concat")
-	flag.StringVar(&seperator, "sep", "", "Seperator to use")
-	flag.StringVar(&split, "split", " ", "Split the string on this character")
+	flag.StringVar(&seperator, "sep", seperator, "Seperator to use")
+	flag.StringVar(&split, "split", split, "Split the string on this character")
+	flag.BoolVar(&cassing, "c", cassing, "keep casing, transform everything to lower-case by default")
 	flag.Parse()
 
 	if str == "" {
@@ -49,5 +52,11 @@ func main() {
 		}
 	}
 
-	fmt.Println(concat.Concat(str, seperator, split))
+	out := concat.Concat(str, seperator, split)
+
+	if !cassing {
+		out = strings.ToLower(out)
+	}
+
+	fmt.Println(out)
 }

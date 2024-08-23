@@ -18,7 +18,7 @@ func TestConcat(t *testing.T) {
 			input:    "Hello World",
 			sep:      " ",
 			split:    " ",
-			expected: "hello world",
+			expected: "Hello World",
 		},
 		{
 			name:     "ConcatWithComma",
